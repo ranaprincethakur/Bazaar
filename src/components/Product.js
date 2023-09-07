@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MdOutlineStar } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import { useLocation } from 'react-router-dom';
 import { addToCart } from '../redux/bazarSlice';
 
@@ -72,13 +73,25 @@ const Product = () => {
                       description:details.description,
                       })
                       
-                    )
+                    ) && toast.success(`${details.title} is added `)
                   }}
                   className="bg-black text-white py-3 px-6 active:bg-gray-800">add to cart</button>
                 </div>
                 <p className='text-base text-gray-500'>Category: <span className='font-medium capitalize'>{details.category}</span></p>
           </div>
       </div>
+      <ToastContainer
+        position="top-left"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   )
 }
