@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import { HiOutlineArrowLeft } from "react-icons/hi";
 import CartItem from "../components/CartItem";
+import StripeCheckout from 'react-stripe-checkout';
 
 const Cart = () => {
   const productData = useSelector((state) => state.bazar.productData);
@@ -66,6 +67,19 @@ const Cart = () => {
             >
               proceed to checkout
             </button>
+            {
+              payNow && <div className="w-full mt-6 flex items-center justify-center">
+                <StripeCheckout
+                stripeKey="pk_test_51No20mSHZzlcCWbQen6bj6I9OQrKV45Js2k406FjQ5RSKoeXFdGgxZuGYtQ17xPqmLq7UWMH27qPCxOmcWnls9kq003OggyqRZ"
+                name="Bazar Online Shopping"
+                amount={totalAmt *100}
+                label="Pay to bazar"
+                description={`Your Payment amount is $${totalAmt}`}
+                // token={payment}
+                email={userInfo.email}
+                />
+              </div>
+            }
           </div>
         </div>
       ) : (
