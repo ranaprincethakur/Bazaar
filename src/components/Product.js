@@ -13,7 +13,7 @@ const Product = () => {
   let[baseQty, setBaseQty]= useState(1);
   useEffect(()=>{
     setDetails(Location.state.item);
-  },[]);
+  },[Location.state.item]);
   const numberOfstars = details.rating;
   const stars = [];
 
